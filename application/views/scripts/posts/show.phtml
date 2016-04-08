@@ -1,0 +1,156 @@
+
+
+<?php
+
+if($this->post&&$this->user)
+  
+  {           echo"<div class='row'>";
+            
+             $post=$this->post[0];
+            echo "<div class='col-sm-4 col-md-4 col-lg-4 col-xs-10'  float:left'>";         
+            echo "<img class='img-thumbnail'width='100px' height='100px' src='http://cafeteriaproj-cafa.rhcloud.com/data/uploads/".$this->user[0]['photo']."'><br>";
+            echo  "<span class='text-primary'>".$this->user[0]['name']."</span><br>";
+             
+
+
+            if($this->user[0]['admin']=='t'){
+            
+                    echo "<span class='text-primary'>admin</span><br>";
+             
+                 }else{
+
+                 	echo "<span class='text-primary'>user</span><br>";
+                 }
+                    echo "</div>";
+                        
+                            echo"<div style='float:left'>";
+                            echo "<a href='".$this->baseUrl()."/threads/list/id/".$this->thread."'>back</a>";
+                            echo"</div>";
+
+                     echo"</div>";
+                     
+                     echo "<div  style='float:left; margin-left:30px;'>"; 
+
+
+
+
+                     if($this->ban){
+                 
+                    if($this->ban==1){
+                     
+                       echo " <h4 class='text-primary'>sorry can not  add this user to ban list</h4> <br>";
+                          }else{
+                      echo "<h4 class='text-primary' >user is added to ban list successfully</h4><br>";
+                          }    
+                    }
+
+
+
+                    
+                    if($this->user[0]['banned']=='f'){
+                     echo"<a class='btn btn-default' href='".$this->baseUrl()."/users/ban/id/".$post['user_id']."/post/".$post['id']."/thread/".$this->thread."'>Add post's user to ban list </a><br><br>";
+                    }else{
+                        
+                        echo " <h4 class='text-primary'>this post's adder is added to ban list </h4> <br>";
+
+                    }
+
+                    
+                    echo "<a class='btn btn-default' href='".$this->baseUrl()."/posts/edit/id/".$post['id'].
+                    "/thread/".$this->thread."'>edit post</a> <br><br>";
+                      echo"<div class='row'>";
+                    echo "<div class='col-sm-12 col-md-12 col-xs-12 col-lg-12' style='padding:20px;border-width:3px; border-color:cyan;border-style:solid;  border-radius: 25px;'>";
+                     
+                   
+                    echo "<h4 class='text-primary'><u>Title</u></h4> <p> <h5 class='text-info'>".$post['title']."</h5></p>";
+
+                    echo "<span class='text-primary'>Created at  <p class='text-info'>".$post['created_at']."</p></span>";
+
+                   
+                    echo '<h4 class="text-primary"><u>Content </u></h4> <div id="input1" class="col-sm-12 col-md-12 col-xs-12 col-lg-12 text-info" style="padding:10px;border-width:3px; border-color:cyan;border-style:solid;  border-radius: 25px;">'.
+
+                      $post['input'].'</div>';   
+
+                    echo "<span class='text-primary'>Signature</span>  <p class='text-info'>".$this->user[0]['signature']."</p>";
+                  
+                    
+                     echo "</div>";
+
+                   echo"</div>";
+
+                   echo"<div class='row'>";
+                    echo "<h1 class='text-primary'>Replies</h1>";
+
+                        echo"<hr>";
+
+                        echo"</div>";
+
+                    foreach ($this->comments as  $com) {
+                    	
+                          echo"<div class='row'>";
+
+                          echo"<div class='col-sm-12 col-md-12 col-xs-12 col-lg-12'>";
+                           echo"<div class='row'>";
+
+                          echo "<h4 class='text-primary'><u>Title</u></h4> <p><h5 style='color:grey'>".$com['title']."</h5></p>";
+                             
+                             echo"</div>";
+
+                           echo"<div class='row'>";
+                          echo "<h4 class='text-primary'><u>Content</u></h4> <div id='input1'class='col-sm-12 col-md-12 
+                          col-xs-12 col-lg-12 text-info'>".$com['input']."
+                          </div>";
+                             echo"</div>";
+
+                           echo"<div class='row'>";
+
+                          echo "<h4 class='text-primary'><u>Replied_at</u></h4> <p><h5 style='color:grey'>".$com['created_at']."</h5></p>";
+                             
+                             echo"</div>";
+
+                           echo"<div class='row'>";
+
+                          echo "<h4 class='text-primary'><u>By_user</u></h4> <p><h5 style='color:grey'>".$com['name']."</h5></p>";
+                             
+                          echo"</div>";
+                          
+                          echo "<a class='btn btn-default' href='".$this->baseUrl()."/replies/edit/id/".$com['id']."/post_id/".$com['post_id']."/thread/".$this->thread."'>edit</a>";
+                          
+                          echo "<a class='btn btn-default' href='".$this->baseUrl()."/replies/delete/id/".$com['id']."/post_id/".$com['post_id']."/thread/".$this->thread."'>delete</a><br><br>";
+
+
+                               if($com['banned']=='f'){
+                          echo"<td ><a class='btn btn-default' href='".$this->baseUrl()."/users/ban/id/".$com['user_id']."/post/".$com['post_id']."/thread/".$this->thread."'>Add commenter to ban list </a></td></tr>";
+                        }else{
+
+                             echo " <h4 class='text-primary'>this commenter is added to ban list </h4> <br>";
+                        }
+                     
+
+                        echo"<hr>";
+                       echo"</div>";
+                     echo"</div>";
+
+                    } 
+                        
+
+                            if($post['comment_allow']=='t'){
+                               
+                                  echo "<div id='form' style='width:100%'class='col-sm-12 col-md-12 col-xs-12 col-lg-12'>";
+                            
+                                  echo $this->rep_form;
+                                     
+                                  echo"</div>";
+                                
+                               
+                                    }
+                                            
+                    
+                         echo"</div>";
+
+
+  
+
+  }
+
+

@@ -1,0 +1,183 @@
+<?php echo $this->doctype() ?>
+<html lang="en">
+    <head> 
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <?php echo $this->headMeta(); ?>
+        <?php echo $this->headTitle() ?>
+        <?php echo $this->headLink() ?>
+       
+    </head>
+
+    <body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Forum Admin Panel
+                    </a>
+                </li>
+     
+                <li>
+
+                <?php
+                
+
+                echo    "<a href='".$this->baseUrl()."/users/list/'>Users</a>";
+
+                
+                echo "</li><li>".
+                    
+                "<a href='".$this->baseUrl()."/categories/list/'>Categories</a>".
+                
+                "</li><li><a href='".$this->baseUrl()."/threads/list/'>Threads</a>".
+                
+                "</li><li><a href='".$this->baseUrl()."/system/cstate'>System</a></li>".
+                "</li><li><a href='".$this->baseUrl()."/index/index'>Home</a></li><li><a  href='".$this->baseUrl()."/index/logout'>logout</a></li>";
+              
+                ?>
+
+            </ul>
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+
+                     <?php echo "<span class='text-primary'>".$this->name."</span><br><br>";?>
+
+                  <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Hide</a>
+                     <br>
+                     <br>
+                  
+                    <div class="col-xs-6 col-md-8 col-sm-7 col-lg-12">
+
+<?php echo $this->layout()->content; ?>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+        <?php echo $this->headScript() ?>
+    <!-- Menu Toggle Script -->
+
+    <script>
+    
+         $(document).ready(function () {
+         
+           $("#input").cleditor()[0].focus();
+        
+        });
+
+        $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+
+<script>
+
+        $('table a').attr('class','btn btn-default');
+
+         
+       //
+         $('input[type=text]').attr('class','form-control');
+              
+          $('input[type=file]').attr('class','form-control');    
+
+          $('input[type=password]').attr('class','form-control');    
+
+        //$('label').before('<div class="form-group">');
+
+        // $('input[type=text]').after('</div>');
+            
+        $("form").attr('role','form');
+         $("#form li").attr('style',' list-style-type: none;');
+          $("#form p").attr('class','help-block');   
+         
+         $('select').attr('class','form-control');
+           $('textarea').attr('class','form-control');
+
+
+        $('#form br').remove();
+        $( "label:contains(male)").attr('class','radio-inline');
+        $( "label:contains(female)").attr('class','radio-inline');
+        $('input[type=submit]').attr('class','btn btn-primary');
+
+        $("span a ").attr('class','hi');
+         
+
+        
+        
+        $("#category").change(function(ex){
+
+                id=ex.target.value;
+           
+
+            $.ajax({
+                     type:"GET",
+                     url: "http://cafeteriaproj-cafa.rhcloud.com/subcategory/list/id/"+id,
+                     cache: false,
+                     dataType: 'json',
+             success: function(rec){
+                    
+               var values;
+               var keys;
+               if(rec){    
+                 values = Object.keys(rec).map(function(k) { return rec[k] });
+               
+                 
+                 keys=Object.keys(rec);
+                   
+                }
+                
+                 var str="";
+
+
+
+
+                 for (var i=0;i<values.length;i++) {
+                   
+                         str+='<option value='+keys[i]+'>'+values[i]+'</option>';
+                       
+
+                    }
+                 
+                      $("#forum").html(str);
+                 }                    
+                 
+                 });  
+
+          
+
+        });
+
+
+        $("#input1 img ").attr('class',  '150px');
+        $("#input1 img ").attr('height',' 150px');
+     
+
+ </script>
+
+</body>
+
+</html>

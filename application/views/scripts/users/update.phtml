@@ -1,0 +1,17 @@
+
+<?php
+
+
+    echo "<div id='form' style='border-width:3px; border-color:cyan;border-style:solid;  border-radius: 25px; padding:20px'>";
+      
+	echo '<img  class="img-thumbnail" width="150px" height="150px" src="http://cafeteriaproj-cafa.rhcloud.com/data/uploads/'.$this->photo.'"/>';
+
+
+	echo "<div  class='text-info'><br>$this->email &nbsp; &nbsp; <a href='".$this->baseUrl()."/users/changemail/id/".$this->id."'> Change email </a></diV>";
+    
+  
+	echo $this->reg_form; 
+    
+    echo "</div>";
+
+?>

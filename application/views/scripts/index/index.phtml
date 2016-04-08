@@ -1,0 +1,78 @@
+<?php
+
+echo "<html><head>";
+echo"<link href='http://cafeteria-cafa.rhcloud.com/static/css/bootstrap.min.css' rel='stylesheet'/>";
+echo "</head>";
+echo"<body>";
+
+if($this->msg=='ban'){
+
+  echo "<p class='text-danger'>Sorry you are added to ban list users </p>";
+
+}
+
+if($this->msg=='close'){
+ 
+  echo "<p class='text-danger'>Sorry system is close you can not enter now try again later </p>";
+
+}
+
+
+if($this->msg=='unauth'){
+ 
+  echo "<p class='text-danger'>Unauthorized access</p>";
+
+}
+
+if($this->msg=='passreset'){
+ 
+
+  echo "<p class='text-danger'>your password reset please login </p>";
+ 
+}
+
+
+
+
+if($this->login_form){
+echo"<div id='form' class='col-lg-6 col-xs-6 col-md-6 col-sm-6'>";
+
+echo $this->login_form;
+
+echo "<p class='text-danger'>".$this->log_error."</p>";
+echo "<a href='".$this->baseUrl()."/index/forgetpass'>forget password?</a>";
+echo"</div>";
+
+}else{
+
+echo "<a href='".$this->baseUrl()."/index/logout'>logout</a>";
+
+}
+
+
+echo "
+
+<script src='http://cafeteria-cafa.rhcloud.com/static/js/jquery.js'></script>
+<script src='http://cafeteria-cafa.rhcloud.com/static/js/bootstrap.min.js'></script>
+
+<script>
+
+  $('input[type=text]').attr('class','form-control');
+              
+  $('input[type=file]').attr('class','form-control');    
+  
+   $('input[type=submit]').attr('class','btn btn-primary'); 
+
+  $('input[type=password]').attr('class','form-control'); 
+   $('form').attr('role','form');
+   $('#form li').attr('style',' list-style-type: none;');
+   $('#form p').attr('class','help-block');    
+  
+  $('#remember-element').append('remember me');
+
+</script>";
+
+echo"<body>";
+echo "</html>";
+
+?>

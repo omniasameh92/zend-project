@@ -1,0 +1,51 @@
+<?php
+
+/*if($this->msg == 1)
+        echo 'user deleted <br />';
+if($this->msg == 2)
+        echo 'user edited <br />';  */
+
+if($this->categories){    
+
+$categories=$this->categories;
+
+echo"<a class='btn btn-default'href='".$this->baseUrl()."/categories/add/'>Add new category</a>";
+
+echo "<br>";
+echo "<br>";
+
+
+echo "<table class='table table-hover table-striped table-bordered col-sm-12 col-md-12 col-xs-12 col-lg-12' ><th>Category</th><th colspan='4'>Actions</th>";
+  
+
+       foreach ($categories as $cat){
+       
+        
+          echo "<tr><td><h4><span><a href='".$this->baseUrl()."/categories/getsub/id/".$cat['id']."'>".$cat['category']."</a></span><h4></td>";
+           
+  
+          echo "<td><a href='".$this->baseUrl()."/categories/delete/id/".$cat['id']."'>delete</a></td>";
+
+  
+          echo "<td><a href='".$this->baseUrl()."/categories/edit/id/".$cat['id']."'>edit</a></td>";
+
+        
+
+      }      
+
+ echo "<table>";
+
+ }else{
+  
+   
+   echo "<p>there are no  categories yet </p>";
+ }
+
+
+?>
+
+<?php
+echo "<div>";
+echo $this->paginationControl($this->categories, 'Sliding','p_c.phtml');
+echo "</div>";
+?>

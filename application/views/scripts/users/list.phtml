@@ -1,0 +1,114 @@
+<?php
+
+if($this->msg =='add')
+
+        echo 'an user added to system and an email sent to his mail inbox  <br />';
+
+/*if($this->msg == 2)
+        echo 'user edited <br />';  */
+
+if ($this->ban=='f'){
+
+echo "<div style='margin:20px' class='row'>";
+
+ echo"<a  class='btn btn-default' href='".$this->baseUrl()."/users/add/'>add New user</a>";
+
+echo "</div>";
+
+echo "<div style='margin:20px'class='row'>"
+;      echo"<a  class='btn btn-default' href='".$this->baseUrl()."/users/list/ban/t'>ban users list</a>";
+
+echo"</div>";
+
+
+if($this->logged_user==1){
+
+      echo "<div style='margin:20px' class='row'>";
+
+  echo "<a class='btn btn-default' href='".$this->baseUrl()."/users/update/id/1/ban/".$this->ban."'>edit your information</a>";
+  echo"</div>";
+
+
+}
+
+      
+}else{
+           
+   echo"<a class='btn btn-default'  href='".$this->baseUrl()."/users/banemail/'>add to ban list</a>";
+}
+
+
+if(count($this->users)!=0){    
+
+#var_dump(count($this->users));
+#var_dump($this->users);
+$users=$this->users;
+
+
+echo "<table class='table table-hover table-striped table-bordered col-sm-12 col-md-12 col-xs-12 col-lg-12'><th>email</th><th>username</th><th colspan='4'>Actions</th>";
+  
+
+       foreach ($users as $user){
+       
+        
+          echo "<tr><td>".$user['email']."</td><td>".$user['name']."</td>";
+           
+           if( $user['user_id'] != 1){
+
+                 echo "<td><a  class='btn btn-default' href='".$this->baseUrl()."/users/delete/id/".$user['user_id']."/ban/".$this->ban."'>delete</a></td>";
+                 
+
+                 echo "<td><a class='btn btn-default' href='".$this->baseUrl()."/users/update/id/".$user['user_id']."/ban/".$this->ban."'>edit</a></td>";
+
+          }else{
+
+
+          
+          echo "<td colspan='4'><a class='btn btn-default' href='".$this->baseUrl()."/users/update/id/".$user['user_id']."/ban/".$this->ban."'>edit</a></td></tr>";
+             
+             }
+
+          if ($this->ban=='t'){
+                    
+                      echo "<td><a class='btn btn-default'  href='".$this->baseUrl()."/users/bandel/id/".$user['user_id']."'>remove from ban list</a></td>";
+                   }
+
+          if($user['user_id'] != 1)
+          {
+          if ($this->ban=='f'){
+
+            if($user['admin']=='t'){
+               echo "<td><a class='btn btn-default'  href='".$this->baseUrl()."/users/admin/id/".$user['user_id']."/a/f' >Administrator</a></td>";
+ 
+              }else{
+
+                echo "<td><a class='btn btn-default' href='".$this->baseUrl()."/users/admin/id/".$user['user_id']."/a/t' >Regular</a></td>";
+           } 
+
+                 echo"<td ><a class='btn btn-default' href='".$this->baseUrl()."/users/ban/id/".$user['user_id']."'>Add to ban list </a></td></tr>";
+
+          }
+       }
+
+      }      
+
+ echo "<table>";
+
+ }else{
+  
+   
+   echo "<p>there is no users yet in ban list</p>";
+
+ }
+
+
+
+
+
+?>
+
+<?php
+echo "<div>";
+echo $this->paginationControl($this->users, 'Sliding','p_c.phtml');
+echo "</div>";
+?>

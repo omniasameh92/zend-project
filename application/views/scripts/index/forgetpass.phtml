@@ -1,0 +1,42 @@
+<?php
+
+echo "<html><head>";
+echo"<link href='http://cafeteria-cafa.rhcloud.com/static/css/bootstrap.min.css' rel='stylesheet'/>";
+echo "</head>";
+echo"<body>";
+
+if($this->msg=='1'){
+ 
+      echo "<p class='text-info'>an email sent to your inbox to reset your password</p>";
+}
+
+echo"<div id='form' class='col-lg-6 col-xs-6 col-md-6 col-sm-6'>";
+echo $this->p_form;
+echo"</div>";
+
+echo "
+
+<script src='http://cafeteria-cafa.rhcloud.com/static/js/jquery.js'></script>
+<script src='http://cafeteria-cafa.rhcloud.com/static/js/bootstrap.min.js'></script>
+
+<script>
+
+  $('input[type=text]').attr('class','form-control');
+              
+  $('input[type=file]').attr('class','form-control');    
+  
+   $('input[type=submit]').attr('class','btn btn-primary'); 
+
+  $('input[type=password]').attr('class','form-control'); 
+   $('form').attr('role','form');
+   $('#form li').attr('style',' list-style-type: none;');
+   $('#form p').attr('class','help-block');    
+ 
+
+</script>";
+
+echo"<body>";
+echo "</html>";
+
+
+?>

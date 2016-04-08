@@ -1,0 +1,77 @@
+<?php
+
+
+if($this->category){
+  
+
+  echo"<a class='btn btn-default' href='".$this->baseUrl()."/Subcategory/add/id/".$this->category['id']."'> Add new forum </a>";
+
+
+  echo "<br>";
+  
+ echo "<br>";
+  echo "<table class='table table-hover table-striped table-bordered col-sm-12 col-md-12 col-xs-12 col-lg-12'><tr><th>Name:</th><td><h4 class='text-info'>".$this->category['category']."</h4></td></tr><tr><th>Description:</th><td><h4 class='text-info'>".
+  $this->category['description']."</h4></td></tr></table>";
+  
+ }
+
+
+if(count($this->all)!=0){
+
+
+$subs=$this->sub;
+
+
+echo "<br>";
+
+
+echo "<table class='table table-hover table-striped table-bordered'><th>Forums</th><th colspan='4'>Actions</th>";
+  
+
+       foreach ($subs as $sub){
+       
+        
+		     echo "<tr><td><h4 class='text-info'>".$sub['sub_category']."</h4></td>";
+		           
+		  
+		     echo "<td><a href='".$this->baseUrl()."/Subcategory/delete/id/".$sub['id']."/sub/".$sub['cat_id']."'>delete</a></td>";
+
+		  
+		     echo "<td><a href='".$this->baseUrl()."/Subcategory/edit/id/".$sub['id']."/sub/".$sub['cat_id']."'>edit</a></td>";
+
+		     if($sub['post_allow']=='t'){
+
+       echo "<td><a href='".$this->baseUrl()."/Subcategory/locadd/id/".$sub['id']."/sub/".$sub['cat_id']."'>Stop posts</a></td>";
+          }else{
+
+                echo "<td><a href='".$this->baseUrl()."/Subcategory/removeloc/id/".$sub['id']."/sub/".$sub['cat_id']."'>Allow posts</a></td>";
+
+
+          }
+
+		  
+      }      
+
+ echo "<table>";
+
+ }else{
+  
+   
+   echo "<h4 class='text-info'>there are no forums yet </h4>";
+   
+ }
+
+
+
+
+
+?>
+
+<?php
+
+echo "<div>";
+
+echo $this->paginationControl($this->sub, 'Sliding','p_c.phtml');
+echo "</div>";
+?>
+

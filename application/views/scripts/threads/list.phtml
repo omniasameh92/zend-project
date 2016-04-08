@@ -1,0 +1,57 @@
+<?php
+
+
+     if($this->sub[0]['post_allow']=='t'){ 
+          echo "<a class='btn btn-default'href='".$this->baseUrl()."/posts/add/id/".$this->id."'>Add new thread</a> <br> <br>";
+         
+
+      }
+
+if($this->posts){
+
+    echo "<table class='table table-hover table-striped table-bordered col-sm-12 col-md-12 col-xs-12 col-lg-12'><th>Thread</th><th colspan='3'>Action</th>";
+
+           foreach($this->posts as $post){
+ 
+       echo"<tr><td><h4><span><a href='".$this->baseUrl()."/posts/show/id/".$post['id']."/thread/".$this->id."'>".$post['title']."</a></span></h4></td><td><a href='".
+       $this->baseUrl()."/posts/delete/id/".$post['id']."/sub/".$this->id."'>delete</a></td>";
+        
+
+        if($post['sticky']=='f'){
+
+       echo "<td><a href='".$this->baseUrl()."/posts/sticky/id/".$post['id']."/sub/".$this->id."'>Stick post</a></td>";
+          }else{
+
+                echo "<td><a href='".$this->baseUrl()."/posts/removesticky/id/".$post['id']."/sub/".$this->id."'>Unstick  post</a></td>";
+
+          }
+
+
+          if($post['comment_allow']=='t'){
+
+             echo "<td><a href='".$this->baseUrl()."/posts/locadd/id/".$post['id']."/sub/".$this->id."'>Stop comments</a></td></tr>";
+          }else{
+
+                echo "<td><a href='".$this->baseUrl()."/posts/removeloc/id/".$post['id']."/sub/".$this->id."'>Allow comments</a></td></tr>";
+
+          }
+
+
+          }
+    
+    echo "</table>";
+
+ }else{
+
+
+ 	echo"<p>There are no any Threads yet</p>";
+
+ }
+
+?>
+
+<?php
+echo "<div>";
+echo $this->paginationControl($this->posts, 'Sliding','p_c.phtml');
+echo "</div>";
+?>

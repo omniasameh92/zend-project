@@ -1,0 +1,20 @@
+<?php
+
+
+if ($this->state && $this->state[0]['state']=='t'){
+
+ echo"<h1 class='text-danger'>Close the enter system </h1>";    
+ 
+ echo " <h3 class='text-info'>System is now ";
+ echo"<a class='btn btn-success'href='".$this->baseUrl()."/system/cstate/c/f'>On</a></h3>";
+ 
+ }else if($this->state && $this->state[0]['state']=='f'){
+
+ echo"<h1 class='text-danger' >Open the enter system </h1>";    
+ 
+ echo "<h3 class='text-info' >System is now ";
+ echo"<a class='btn btn-danger'href='".$this->baseUrl()."/system/cstate/c/t'>Off</a></h3>";
+
+ }
+
+?>
